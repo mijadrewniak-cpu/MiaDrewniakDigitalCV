@@ -1,0 +1,1189 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Mia Drewniak CV</title>
+
+<style>
+:root{
+  --bg1:#fafbfc;
+  --bg2:#eef1f4;
+  --text:#111111;
+  --muted:#5f6672;
+
+  --card:rgba(255,255,255,.16);
+  --card-2:rgba(255,255,255,.10);
+  --stroke:rgba(255,255,255,.52);
+  --stroke-2:rgba(255,255,255,.26);
+
+  --shadow:rgba(0,0,0,.08);
+  --r:30px;
+  --font:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",Arial,sans-serif;
+}
+
+*{ box-sizing:border-box; }
+
+html, body{ min-height:100%; }
+
+body{
+  margin:0;
+  font-family:var(--font);
+  color:var(--text);
+  background: linear-gradient(180deg, #f7f7f9 0%, #eef1f5 100%);
+  overflow-y:auto;
+  overflow-x:hidden;
+}
+
+/* background glow */
+.pulseBg{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
+}
+.pulseBg::before{
+  content:"";
+  position:absolute;
+  inset:-25%;
+  background:
+    radial-gradient(circle at 24% 18%, rgba(255,255,255,.62) 0%, transparent 24%),
+    radial-gradient(circle at 80% 22%, rgba(220,235,255,.22) 0%, transparent 30%),
+    radial-gradient(circle at 68% 80%, rgba(255,255,255,.20) 0%, transparent 30%);
+  filter: blur(20px);
+  opacity:.95;
+  animation: bgPulse 9s ease-in-out infinite;
+}
+
+#petals {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.petal {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 50% 50% 50% 0;
+  background: radial-gradient(circle, rgba(255,255,255,0.9), rgba(180,220,255,0.4));
+  opacity: 0.5;
+  filter: blur(0.5px);
+  animation: floatPetal linear forwards;
+}
+
+@keyframes floatPetal {
+  0% {
+    transform: translateY(20px) rotate(0deg);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(-120vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes bgPulse{
+  0%,100%{ transform: scale(1); opacity:.8; }
+  50%{ transform: scale(1.06); opacity:1; }
+}
+
+.topBar{
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  padding: 14px 16px;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  background: linear-gradient(180deg, rgba(250,251,252,.82), rgba(250,251,252,.34));
+  border-bottom: 1px solid rgba(255,255,255,.42);
+}
+.topInner{
+  width:min(1120px,100%);
+  margin:0 auto;
+  display:flex;
+  justify-content:flex-end;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.topBtn{
+  border-radius:999px;
+  padding:11px 16px;
+  border:1px solid rgba(255,255,255,.58);
+  background: rgba(255,255,255,.20);
+  color: rgba(17,17,17,.92);
+  text-decoration:none;
+  font-weight:700;
+  letter-spacing:.1px;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.72),
+    0 8px 20px rgba(0,0,0,.04);
+  cursor:pointer;
+}
+.topBtn:hover{
+  background: rgba(255,255,255,.28);
+}
+.topBtn.active{
+  background: rgba(255,255,255,.42);
+}
+
+.lang-btn {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.lang-btn:active::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, rgba(120,200,255,0.4), transparent 60%);
+  animation: clickGlow 0.5s ease;
+}
+
+@keyframes clickGlow {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+.wrap{
+  position:relative;
+  z-index:2;
+  min-height: calc(100vh - 70px);
+  display:grid;
+  place-items:start center;
+  padding:22px 16px 40px;
+}
+
+.outerCard{
+  width:min(1120px,100%);
+  background:rgba(255,255,255,.10);
+  border:1px solid rgba(255,255,255,.28);
+  border-radius:34px;
+  padding:18px;
+  box-shadow: 0 26px 90px rgba(0,0,0,.08);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.speaker{
+  position:relative;
+  border-radius:28px;
+  padding:22px;
+  border:1px solid rgba(255,255,255,.30);
+  background:
+    radial-gradient(280px 280px at 18% 30%, rgba(255,255,255,.28), transparent 60%),
+    radial-gradient(320px 260px at 86% 28%, rgba(220,235,255,.18), transparent 62%),
+    radial-gradient(280px 280px at 62% 82%, rgba(255,255,255,.14), transparent 62%),
+    linear-gradient(180deg, rgba(255,255,255,.16), rgba(255,255,255,.06));
+  overflow:hidden;
+}
+.speaker::before{
+  content:"";
+  position:absolute;
+  inset:-140px;
+  background:
+    radial-gradient(circle at 50% 55%, rgba(220,235,255,.20) 0%, rgba(255,255,255,.08) 18%, transparent 44%),
+    radial-gradient(circle at 24% 72%, rgba(255,255,255,.12) 0%, transparent 34%);
+  opacity:.75;
+  filter: blur(16px);
+  pointer-events:none;
+  animation: speakerPulse 8s ease-in-out infinite;
+}
+@keyframes speakerPulse{
+  0%,100%{ transform: scale(1); }
+  50%{ transform: scale(1.04); }
+}
+
+.eq{
+  position:absolute;
+  right:14px;
+  top:14px;
+  display:flex;
+  gap:6px;
+  opacity:.78;
+}
+.eq span{
+  width:6px;
+  height:20px;
+  border-radius:999px;
+  background: linear-gradient(180deg, rgba(255,255,255,.98), rgba(226,230,236,.88), rgba(202,208,217,.76));
+  box-shadow: 0 0 14px rgba(255,255,255,.22);
+  animation: eq 1.05s ease-in-out infinite;
+}
+.eq span:nth-child(2){ animation-delay:.10s; }
+.eq span:nth-child(3){ animation-delay:.18s; }
+.eq span:nth-child(4){ animation-delay:.28s; }
+@keyframes eq{
+  0%,100%{ transform: scaleY(.75); opacity:.68; }
+  50%{ transform: scaleY(1.95); opacity:1; }
+}
+
+.hero{
+  position: relative;
+  margin-bottom: 26px;
+  padding: 28px 26px;
+  border-radius: 28px;
+  background: rgba(255,255,255,0.18);
+  backdrop-filter: blur(30px) saturate(160%);
+  -webkit-backdrop-filter: blur(30px) saturate(160%);
+  border: 1px solid rgba(255,255,255,0.55);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.65),
+    0 10px 30px rgba(0,0,0,0.04);
+  overflow: hidden;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(120,180,255,0.18), transparent 40%),
+    radial-gradient(circle at 80% 30%, rgba(180,220,255,0.12), transparent 45%),
+    linear-gradient(180deg, rgba(255,255,255,0.35), transparent 60%);
+  pointer-events: none;
+}
+.hero > *{
+  position:relative;
+  z-index:2;
+}
+.hero h1{
+  position: relative;
+  display: inline-block;
+  margin:0 0 6px;
+  font-size:58px;
+  line-height:.92;
+  letter-spacing:-.075em;
+  color:#111;
+  font-weight:700;
+}
+
+.hero h1::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,0.6),
+    transparent
+  );
+  transform: skewX(-20deg);
+  animation: shineMove 4s infinite;
+}
+
+@keyframes shineMove {
+  0% { left: -60%; }
+  100% { left: 120%; }
+}
+
+.sub{
+  margin:0 0 10px;
+  color:var(--muted);
+  font-size:20px;
+  line-height:1.5;
+  font-weight:500;
+}
+.contact{
+  color:var(--muted);
+  font-size:15px;
+  line-height:1.7;
+}
+
+.stack{
+  display:grid;
+  gap:20px;
+}
+.grid{
+  display:grid;
+  gap:20px;
+}
+.grid.two{
+  grid-template-columns:1fr 1fr;
+}
+
+/* cards */
+.card {
+  position: relative;
+  z-index: 2;
+
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+
+  border-radius: 24px;
+  padding: 24px;
+
+  border: 1px solid rgba(255,255,255,0.25);
+  box-shadow:
+    0 8px 32px rgba(0,0,0,0.2),
+    inset 0 1px 0 rgba(255,255,255,0.3);
+
+  overflow: hidden;
+  isolation: isolate;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      260px circle at var(--mx, 50%) var(--my, 50%),
+      rgba(170, 220, 255, 0.28),
+      rgba(255,255,255,0.14) 28%,
+      transparent 60%
+    );
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  z-index: 0;
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(135deg,
+    rgba(255,255,255,0.05) 0%,
+    rgba(255,255,255,0.35) 42%,
+    rgba(255,255,255,0.05) 55%,
+    rgba(255,255,255,0)
+  );
+  transform: translateX(-140%) translateY(-20%) rotate(12deg);
+  opacity: 0;
+  transition: transform 0.65s ease, opacity 0.65s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 18px 40px rgba(0,0,0,0.10),
+    0 4px 10px rgba(0,0,0,0.05);
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+.card:hover::after {
+  transform: translateX(140%) translateY(20%) rotate(12deg);
+  opacity: 0.35;
+}
+
+.card > * {
+  position: relative;
+  z-index: 2;
+}
+
+.card h2{
+  margin:0 0 14px;
+  font-size:13px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:#555c67;
+  font-weight:800;
+}
+.card p{
+  margin:0;
+  font-size:17px;
+  line-height:1.72;
+  color:#111;
+}
+.card ul{
+  margin:0;
+  padding-left:20px;
+}
+.card li{
+  margin-bottom:8px;
+  font-size:16px;
+  line-height:1.65;
+  color:#111;
+}
+
+.pills{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  padding:0;
+  list-style:none;
+}
+.pills li,
+.tool {
+  margin: 0;
+  padding: 10px 16px;
+  border-radius: 999px;
+
+  color: #111;
+  font-weight: 500;
+  font-size: 15px;
+
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow:
+    0 6px 18px rgba(0,0,0,0.10),
+    inset 0 0 0 1px rgba(255,255,255,0.75);
+
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+.pills li:hover,
+.tool:hover {
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow:
+    0 12px 24px rgba(0,0,0,0.14),
+    inset 0 0 0 1px rgba(120,200,255,0.22);
+}
+
+.eduItem + .eduItem{ margin-top:14px; }
+.eduTitle{
+  font-size:17px;
+  font-weight:600;
+  margin-bottom:4px;
+}
+.eduSub{
+  font-size:15px;
+  color:var(--muted);
+  line-height:1.5;
+}
+
+.job{
+  padding-bottom:14px;
+  margin-bottom:14px;
+  border-bottom:1px solid rgba(17,17,17,.06);
+}
+.job:last-child{
+  margin-bottom:0;
+  padding-bottom:0;
+  border-bottom:none;
+}
+.jobTitle{
+  font-size:18px;
+  font-weight:600;
+  letter-spacing:-.015em;
+  margin-bottom:4px;
+  color:#111;
+}
+.date{
+  font-size:14px;
+  color:var(--muted);
+  margin-bottom:10px;
+  font-weight:500;
+}
+
+.lang{ display:none; }
+.lang.active{ display:block; }
+
+@media print{
+  body{
+    background:#f7f8fa !important;
+  }
+  .topBar,
+  .eq,
+  .pulseBg{
+    display:none !important;
+  }
+  .wrap{
+    padding:0;
+  }
+  .outerCard{
+    width:100%;
+    border:none;
+    box-shadow:none;
+    background:transparent;
+    padding:0;
+    border-radius:0;
+  }
+  .speaker{
+    border:none;
+    box-shadow:none;
+    border-radius:0;
+    padding:14mm 12mm;
+    background:#f7f8fa !important;
+  }
+  .speaker::before,
+  .hero::before{
+    display:none !important;
+  }
+  .hero{
+    background:rgba(255,255,255,.72) !important;
+    border:1px solid #d9dde4 !important;
+    box-shadow:none !important;
+    backdrop-filter:none !important;
+    -webkit-backdrop-filter:none !important;
+  }
+  .card{
+    background:rgba(255,255,255,.72) !important;
+    border:1px solid #d9dde4 !important;
+    box-shadow:none !important;
+    backdrop-filter:none !important;
+    -webkit-backdrop-filter:none !important;
+    break-inside:avoid;
+    page-break-inside:avoid;
+  }
+  .card::before,
+  .card::after{
+    display:none !important;
+  }
+  @page{
+    size:A4;
+    margin:10mm;
+  }
+}
+
+@media (max-width:900px){
+  .hero h1{ font-size:42px; }
+  .sub{ font-size:18px; }
+  .grid.two{ grid-template-columns:1fr; }
+  .speaker{ padding:18px; }
+  .card{ padding:20px; }
+}
+</style>
+</head>
+
+<body>
+<div id="petals"></div>
+<div class="pulseBg"></div>
+
+<div class="topBar">
+  <div class="topInner">
+    <button class="topBtn lang-btn active" id="btn-en" type="button">English</button>
+    <button class="topBtn lang-btn" id="btn-pl" type="button">Polski</button>
+    <button class="topBtn" onclick="window.print()">Save as PDF</button>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="outerCard">
+    <div class="speaker">
+      <div class="eq" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+
+      <!-- ENGLISH -->
+      <div class="lang active" id="lang-en">
+        <section class="hero">
+          <h1>Mia Drewniak</h1>
+          <p class="sub">Content Creator • Creative • Web • Digital</p>
+          <div class="contact">
+            mia.drewniak123@gmail.com<br>
+            +44 7432358952 | +48 665 770 704
+          </div>
+        </section>
+
+        <div class="stack">
+          <!-- INSTAGRAM CAROUSEL SECTION -->
+          <section class="card">
+            <h2>Instagram</h2>
+
+            <style>
+              .instaCarousel{
+                display:flex;
+                gap:14px;
+                overflow-x:auto;
+                padding:6px 2px 12px;
+                scroll-snap-type:x mandatory;
+                -webkit-overflow-scrolling:touch;
+              }
+
+              .instaCarousel::-webkit-scrollbar{
+                height:8px;
+              }
+
+              .instaCarousel::-webkit-scrollbar-thumb{
+                background:rgba(255,255,255,.35);
+                border-radius:999px;
+              }
+
+              .instaItem{
+                flex:0 0 240px;
+                height:320px;
+                display:block;
+                position:relative;
+                overflow:hidden;
+                border-radius:22px;
+                scroll-snap-align:start;
+
+                background:rgba(255,255,255,.18);
+                border:1px solid rgba(255,255,255,.45);
+
+                backdrop-filter:blur(18px);
+                -webkit-backdrop-filter:blur(18px);
+
+                transition: transform .25s ease, box-shadow .25s ease;
+              }
+
+              .instaItem:hover{
+                transform: translateY(-6px) scale(1.02);
+                box-shadow: 0 20px 40px rgba(0,0,0,.12);
+              }
+
+              .instaItem img{
+                width:100%;
+                height:100%;
+                object-fit:cover;
+                display:block;
+              }
+
+              .instaOverlay{
+                position:absolute;
+                inset:0;
+                background:linear-gradient(to top, rgba(0,0,0,.35), transparent 60%);
+                opacity:0;
+                transition:.3s;
+              }
+
+              .instaItem:hover .instaOverlay{
+                opacity:1;
+              }
+
+              .instaFooter{
+                margin-top:14px;
+                display:flex;
+                justify-content:flex-end;
+              }
+
+              .instaLink{
+                padding:10px 16px;
+                border-radius:999px;
+                text-decoration:none;
+                font-size:14px;
+                font-weight:600;
+                color:#111;
+
+                background:rgba(255,255,255,.6);
+                border:1px solid rgba(255,255,255,.7);
+
+                backdrop-filter:blur(10px);
+              }
+            </style>
+
+            <div class="instaCarousel">
+
+              <a class="instaItem" href="https://www.instagram.com/mia.dre.photography/" target="_blank">
+                <img src="images/insta1.jpg" style="width:300px; display:block;">
+                <div class="instaOverlay"></div>
+              </a>
+
+              <a class="instaItem" href="https://www.instagram.com/mia.dre.photography/" target="_blank">
+                <img src="insta2.jpg" alt="">
+                <div class="instaOverlay"></div>
+              </a>
+
+              <a class="instaItem" href="https://www.instagram.com/mia.dre.photography/" target="_blank">
+                <img src="insta3.jpg" alt="">
+                <div class="instaOverlay"></div>
+              </a>
+
+              <a class="instaItem" href="https://www.instagram.com/mia.dre.photography/" target="_blank">
+                <img src="insta4.jpg" alt="">
+                <div class="instaOverlay"></div>
+              </a>
+
+              <a class="instaItem" href="https://www.instagram.com/mia.dre.photography/" target="_blank">
+                <img src="insta5.jpg" alt="">
+                <div class="instaOverlay"></div>
+              </a>
+
+              <a class="instaItem" href="https://www.instagram.com/mia.dre.photography/" target="_blank">
+                <img src="insta6.jpg" alt="">
+                <div class="instaOverlay"></div>
+              </a>
+
+            </div>
+
+            <div class="instaFooter">
+              <a class="instaLink" href="https://www.instagram.com/mia.dre.photography/" target="_blank">
+                View Instagram →
+              </a>
+            </div>
+          </section>
+
+          <section class="card">
+            <h2>Profile</h2>
+            <p>
+              Entrepreneurial and versatile Content Creator with experience across digital media, content production, and customer-facing roles in regulated environments. I create and develop projects from idea to execution, combining aesthetics, strategy, and visual communication.
+              <br><br>
+              On a daily basis, I focus on content creation, brand building, and website design. I work both conceptually, including ideas and creative direction, and executionally, including video, graphics, and publishing.
+              <br><br>
+              I have experience across different industries, including media, fashion, finance, and entertainment, which allows me to quickly adapt to the style of a brand and its audience.
+            </p>
+          </section>
+
+          <div class="grid two">
+            <section class="card">
+              <h2>Skills</h2>
+              <ul>
+                <li>Content creation and social media strategy</li>
+                <li>Video, photo, and audio production</li>
+                <li>Website design using Visual Studio Code, WordPress, and Wix</li>
+                <li>Using AI tools for research and content planning</li>
+                <li>Creative direction and production coordination</li>
+                <li>Client communication and relationship building</li>
+              </ul>
+            </section>
+
+            <section class="card">
+              <h2>Tools</h2>
+              <ul class="pills">
+                <li>Adobe Premiere Pro</li>
+                <li>Adobe Audition</li>
+                <li>Visual Studio Code</li>
+                <li>WordPress</li>
+                <li>Wix</li>
+                <li>Microsoft PowerPoint</li>
+                <li>Canva</li>
+                <li>CapCut</li>
+              </ul>
+            </section>
+          </div>
+
+          <div class="grid two">
+            <section class="card">
+              <h2>Education</h2>
+              <div class="eduItem">
+                <div class="eduTitle">Master’s Degree – 21st Century Media</div>
+                <div class="eduSub">Coventry University</div>
+              </div>
+              <div class="eduItem">
+                <div class="eduTitle">Bachelor’s Degree – Media Production</div>
+                <div class="eduSub">Coventry University</div>
+              </div>
+            </section>
+
+            <section class="card">
+              <h2>Contact</h2>
+              <p>
+                Email: mia.drewniak123@gmail.com<br>
+                UK: +44 7432358952<br>
+                Poland: +48 665 770 704
+              </p>
+            </section>
+          </div>
+
+          <section class="card">
+            <h2>Experience</h2>
+
+            <div class="job">
+              <div class="jobTitle">Web Designer & Digital Content Creator</div>
+              <div class="date">2026 – Present</div>
+              <ul>
+                <li>Designing websites for clients using Visual Studio Code, WordPress, and Wix</li>
+                <li>Creating content and visual assets to support online presence</li>
+                <li>Managing projects from concept to launch</li>
+              </ul>
+            </div>
+
+            <div class="job">
+              <div class="jobTitle">Presenter – Queen B (online gaming platform)</div>
+              <div class="date">Jan 2026 – Mar 2026</div>
+              <ul>
+                <li>Hosting live online broadcasts for an international audience</li>
+                <li>Building engagement and real-time audience connection</li>
+              </ul>
+            </div>
+
+            <div class="job">
+              <div class="jobTitle">Music Artist & Creative Director – Mia Dre</div>
+              <div class="date">Mar 2025 – Present</div>
+              <ul>
+                <li>Creating and developing an original music project</li>
+                <li>Leading visual direction, branding, and content strategy</li>
+                <li>Recognised by BBC Introducing</li>
+              </ul>
+            </div>
+
+            <div class="job">
+              <div class="jobTitle">Photographer & Social Media Manager – Inteblu</div>
+              <div class="date">Sep 2024 – Mar 2025</div>
+              <ul>
+                <li>Creating visual campaigns and social media content</li>
+                <li>Building a consistent brand image</li>
+              </ul>
+            </div>
+
+            <div class="job">
+              <div class="jobTitle">Customer Service Advisor – Nationwide Building Society (TSYS, UK)</div>
+              <div class="date">Apr 2024 – Sep 2024</div>
+              <ul>
+                <li>Handled a high volume of customer enquiries (50+ daily) in a regulated banking environment</li>
+                <li>Provided guidance on credit cards and customer debt situations</li>
+                <li>Reviewed customer accounts and identified irregularities</li>
+                <li>Resolved complex and sensitive financial cases with accuracy and care</li>
+                <li>Worked with internal banking systems and managed customer data in line with procedures</li>
+              </ul>
+            </div>
+
+            <div class="job">
+              <div class="jobTitle">Creative Producer & Photographer – Zatanny Concepts (Miami)</div>
+              <div class="date">2023 – Apr 2024</div>
+              <ul>
+                <li>Organising and producing fashion shoots including models, locations, and styling</li>
+                <li>Producing photo and video content for campaigns</li>
+              </ul>
+            </div>
+
+            <div class="job">
+              <div class="jobTitle">Kyokushin Karate World Organisation, YMCA</div>
+              <div class="date">2021 – 2024</div>
+              <ul>
+                <li>Creating content for a 25k+ community</li>
+                <li>Managing website and communication</li>
+                <li>Coordinating international operations</li>
+                <li>Handling sales and customer service</li>
+              </ul>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <!-- POLISH -->
+      <div class="lang" id="lang-pl">
+        <section class="hero">
+          <h1>Mia Drewniak</h1>
+          <p class="sub">Content Creator • Creative • Web • Digital</p>
+          <div class="contact">
+            mia.drewniak123@gmail.com<br>
+            +44 7432358952 | +48 665 770 704
+          </div>
+        </section>
+
+        <div class="stack">
+          <section class="card">
+            <h2>Instagram</h2>
+
+            <style>
+              .instaCarousel{
+                display:flex;
+                gap:14px;
+                overflow-x:auto;
+                padding:6px 2px 12px;
+                scroll-snap-type:x mandatory;
+                -webkit-overflow-scrolling:touch;
+              }
+
+              .instaCarousel::-webkit-scrollbar{
+                height:8px;
+              }
+
+              .instaCarousel::-webkit-scrollbar-thumb{
+                background:rgba(255,255,255,.35);
+                border-radius:999px;
+              }
+
+              .instaItem{
+                flex:0 0 240px;
+                height:320px;
+                display:block;
+                position:relative;
+                overflow:hidden;
+                border-radius:22px;
+                scroll-snap-align:start;
+
+                background:rgba(255,255,255,.18);
+                border:1px solid rgba(255,255,255,.45);
+
+                backdrop-filter:blur(18px);
+                -webkit-backdrop-filter:blur(18px);
+
+                transition: transform .25s ease, box-shadow .25s ease;
+              }
+
+              .instaItem:hover{
+                transform: translateY(-6px) scale(1.02);
+                box-shadow: 0 20px 40px rgba(0,0,0,.12);
+              }
+
+              .instaItem img{
+                width:100%;
+                height:100%;
+                object-fit:cover;
+                display:block;
+              }
+
+              .instaOverlay{
+                position:absolute;
+                inset:0;
+                background:linear-gradient(to top, rgba(0,0,0,.35), transparent 60%);
+                opacity:0;
+                transition:.3s;
+              }
+
+              .instaItem:hover .instaOverlay{
+                opacity:1;
+              }
+
+              .instaFooter{
+                margin-top:14px;
+                display:flex;
+                justify-content:flex-end;
+              }
+
+              .instaLink{
+                padding:10px 16px;
+                border-radius:999px;
+                text-decoration:none;
+                font-size:14px;
+                font-weight:600;
+                color:#111;
+
+                background:rgba(255,255,255,.6);
+                border:1px solid rgba(255,255,255,.7);
+
+                backdrop-filter:blur(10px);
+              }
+            </style>
+
+            <div class="instaCarousel">
+
+              <a class="instaItem" href="https://www.instagram.com/mia.dre.photography/" target="_blank">
+                <img src="images/insta1.jpg" style="width:300px; display:block;">
+                <div class="instaOverlay"></div>
+              </a>
+
+              <a class="instaItem" href="https://www.instagram.com/mia.dre.photography/" target="_blank">
+                <img src="insta2.jpg" alt="">
+                <div class="instaOverlay"></div>
+              </a>
+
+              <a class="instaItem" href="https://www.instagram.com/mia.dre.photography/" target="_blank">
+                <img src="insta3.jpg" alt="">
+                <div class="instaOverlay"></div>
+              </a>
+
+              <a class="instaItem" href="https://www.instagram.com/mia.dre.photography/" target="_blank">
+                <img src="insta4.jpg" alt="">
+                <div class="instaOverlay"></div>
+              </a>
+
+              <a class="instaItem" href="https://www.instagram.com/mia.dre.photography/" target="_blank">
+                <img src="insta5.jpg" alt="">
+                <div class="instaOverlay"></div>
+              </a>
+
+              <a class="instaItem" href="https://www.instagram.com/mia.dre.photography/" target="_blank">
+                <img src="insta6.jpg" alt="">
+                <div class="instaOverlay"></div>
+              </a>
+
+            </div>
+
+            <div class="instaFooter">
+              <a class="instaLink" href="https://www.instagram.com/mia.dre.photography/" target="_blank">
+                View Instagram →
+              </a>
+            </div>
+          </section>
+
+          <section class="card">
+            <h2>Profil</h2>
+            <p>
+              Kreatywna i przedsiębiorcza Content Creatorka z doświadczeniem w digitalu, produkcji treści oraz pracy z klientem. Tworzę i rozwijam projekty od pomysłu do realizacji — łącząc estetykę, strategię i komunikację wizualną.
+              <br><br>
+              Na co dzień zajmuję się tworzeniem contentu, budowaniem wizerunku oraz projektowaniem stron internetowych. Pracuję zarówno koncepcyjnie pomysły i kierunek kreatywny, jak i wykonawczo video, grafika i publikacja.
+              <br><br>
+              Mam doświadczenie w pracy w różnych branżach media, moda, finanse i entertainment, dzięki czemu potrafię szybko dopasować się do stylu marki i jej odbiorców.
+            </p>
+          </section>
+
+          <div class="grid two">
+            <section class="card">
+              <h2>Umiejętności</h2>
+              <ul>
+                <li>Tworzenie i strategia contentu w social media</li>
+                <li>Produkcja video, zdjęć i audio</li>
+                <li>Projektowanie stron internetowych Visual Studio Code, WordPress, Wix</li>
+                <li>Wykorzystanie narzędzi AI do researchu i planowania contentu</li>
+                <li>Kierunek kreatywny i koordynacja produkcji</li>
+                <li>Komunikacja z klientem i budowanie relacji</li>
+              </ul>
+            </section>
+
+            <section class="card">
+              <h2>Narzędzia</h2>
+              <ul class="pills">
+                <li>Adobe Premiere Pro</li>
+                <li>Adobe Audition</li>
+                <li>Visual Studio Code</li>
+                <li>WordPress</li>
+                <li>Wix</li>
+                <li>Microsoft PowerPoint</li>
+                <li>Canva</li>
+                <li>CapCut</li>
+              </ul>
+            </section>
+          </div>
+
+          <div class="grid two">
+            <section class="card">
+              <h2>Wykształcenie</h2>
+              <div class="eduItem">
+                <div class="eduTitle">Studia magisterskie – 21st Century Media</div>
+                <div class="eduSub">Coventry University</div>
+              </div>
+              <div class="eduItem">
+                <div class="eduTitle">Studia licencjackie – Media Production</div>
+                <div class="eduSub">Coventry University</div>
+              </div>
+            </section>
+
+            <section class="card">
+              <h2>Kontakt</h2>
+              <p>
+                Email: mia.drewniak123@gmail.com<br>
+                UK: +44 7432358952<br>
+                Polska: +48 665 770 704
+              </p>
+            </section>
+          </div>
+
+          <section class="card">
+            <h2>Doświadczenie</h2>
+
+            <div class="job">
+              <div class="jobTitle">Web Designer & Digital Content Creator</div>
+              <div class="date">2026 – obecnie</div>
+              <ul>
+                <li>Tworzenie stron internetowych dla klientów Visual Studio Code, WordPress, Wix</li>
+                <li>Tworzenie contentu i materiałów wizualnych wspierających obecność online</li>
+                <li>Prowadzenie projektów od koncepcji do wdrożenia</li>
+              </ul>
+            </div>
+
+            <div class="job">
+              <div class="jobTitle">Prezenter – Queen B platforma gamingowa online</div>
+              <div class="date">sty 2026 – mar 2026</div>
+              <ul>
+                <li>Prowadzenie transmisji na żywo dla międzynarodowej publiczności</li>
+                <li>Budowanie zaangażowania i kontaktu z odbiorcami w czasie rzeczywistym</li>
+              </ul>
+            </div>
+
+            <div class="job">
+              <div class="jobTitle">Artystka muzyczna & Creative Director – Mia Dre</div>
+              <div class="date">mar 2025 – obecnie</div>
+              <ul>
+                <li>Tworzenie i rozwój autorskiego projektu muzycznego</li>
+                <li>Kierowanie wizualne, branding i strategia contentu</li>
+                <li>Wyróżnienie przez BBC Introducing</li>
+              </ul>
+            </div>
+
+            <div class="job">
+              <div class="jobTitle">Fotograf & Social Media Manager – Inteblu</div>
+              <div class="date">wrz 2024 – mar 2025</div>
+              <ul>
+                <li>Tworzenie i realizacja kampanii wizualnych oraz contentu do social media</li>
+                <li>Budowanie spójnego wizerunku marki poprzez kierunek estetyczny i storytelling</li>
+                <li>Koordynacja sesji zdjęciowych – od koncepcji po finalną produkcję</li>
+                <li>Dobór modelek i tworzenie zespołów kreatywnych do projektów</li>
+                <li>Nawiązywanie i rozwijanie współprac z influencerami</li>
+                <li>Organizacja i planowanie sesji contentowych</li>
+                <li>Wyszukiwanie i selekcja lokalizacji dopasowanych do wizji marki</li>
+              </ul>
+            </div>
+
+            <div class="job">
+              <div class="jobTitle">Customer Service Advisor – Nationwide Building Society TSYS, UK</div>
+              <div class="date">kwi 2024 – wrz 2024</div>
+              <ul>
+                <li>Obsługa wysokiego wolumenu zapytań klientów (50+ dziennie) w środowisku regulowanym</li>
+                <li>Doradztwo w zakresie kart kredytowych oraz sytuacji zadłużenia klientów</li>
+                <li>Analiza kont i identyfikacja nieprawidłowości finansowych</li>
+                <li>Rozwiązywanie złożonych i wrażliwych spraw wymagających precyzji i odpowiedzialności</li>
+                <li>Praca w systemach bankowych oraz zarządzanie danymi klientów zgodnie z procedurami</li>
+              </ul>
+            </div>
+
+            <div class="job">
+              <div class="jobTitle">Creative Producer & Fotograf – Zatanny Concepts Miami</div>
+              <div class="date">2023 – kwi 2024</div>
+              <ul>
+                <li>Organizacja i realizacja sesji modowych modele, lokalizacje, stylizacja</li>
+                <li>Produkcja contentu foto i video do kampanii</li>
+              </ul>
+            </div>
+
+            <div class="job">
+              <div class="jobTitle">Kyokushin Karate World Organisation, YMCA</div>
+              <div class="date">2021 – 2024</div>
+              <ul>
+                <li>Tworzenie contentu dla społeczności 25k+</li>
+                <li>Zarządzanie stroną internetową i komunikacją</li>
+                <li>Koordynacja działań międzynarodowych</li>
+                <li>Obsługa sprzedaży i klientów</li>
+              </ul>
+            </div>
+          </section>
+
+          </section>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+document.querySelectorAll(".card").forEach(card => {
+  card.addEventListener("mousemove", e => {
+    const rect = card.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    card.style.setProperty("--mx", x + "%");
+    card.style.setProperty("--my", y + "%");
+  });
+
+  card.addEventListener("mouseleave", () => {
+    card.style.setProperty("--mx", "50%");
+    card.style.setProperty("--my", "50%");
+  });
+});
+
+const btnEn = document.getElementById("btn-en");
+const btnPl = document.getElementById("btn-pl");
+const langEn = document.getElementById("lang-en");
+const langPl = document.getElementById("lang-pl");
+
+btnEn.addEventListener("click", () => {
+  langEn.classList.add("active");
+  langPl.classList.remove("active");
+  btnEn.classList.add("active");
+  btnPl.classList.remove("active");
+  document.documentElement.lang = "en";
+});
+
+btnPl.addEventListener("click", () => {
+  langPl.classList.add("active");
+  langEn.classList.remove("active");
+  btnPl.classList.add("active");
+  btnEn.classList.remove("active");
+  document.documentElement.lang = "pl";
+});
+
+setInterval(() => {
+  const p = document.createElement("div");
+  p.className = "petal";
+
+  p.style.left = Math.random() * 100 + "vw";
+  p.style.bottom = "-20px";
+  p.style.animationDuration = (6 + Math.random() * 6) + "s";
+
+  document.getElementById("petals").appendChild(p);
+
+  setTimeout(() => p.remove(), 12000);
+}, 400);
+</script>
+</body>
+</html>
