@@ -551,6 +551,52 @@ body{
   .speaker{ padding:18px; }
   .card{ padding:20px; }
 }
+
+/* 📱 MOBILE FIX */
+@media (max-width: 768px){
+
+  .stack{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .card{
+    padding: 18px;
+    border-radius: 18px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+
+  .hero h1{
+    font-size: 28px;
+  }
+
+  .sub{
+    font-size: 14px;
+  }
+
+  .contact{
+    font-size: 13px;
+  }
+
+  /* skills + tools → stack */
+  .grid{
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 16px;
+  }
+
+  /* instagram carousel smaller */
+  .carousel img{
+    width: 140px !important;
+  }
+
+  /* prevent horizontal scroll */
+  body{
+    overflow-x: hidden;
+  }
+}
 </style>
 </head>
 
@@ -852,7 +898,7 @@ body{
       <div class="lang" id="lang-pl">
         <section class="hero">
           <h1>Mia Drewniak</h1>
-          <p class="sub">Content Creator • Creative • Web • Digital</p>
+          <p class="sub"> Content Creator • Creative • Web • Digital</p>
           <div class="contact">
             mia.drewniak123@gmail.com<br>
             +44 7432358952 | +48 665 770 704
